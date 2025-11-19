@@ -4,28 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMRMatters - Coming Soon</title>
+    <link rel="icon" href="/HLogo.png" type="image/png">
     <style>
+        :root {
+            --color-primary: #ff7f00;
+            --color-primary-light: #ffaa00;
+            --color-primary-dark: #cc6600;
+            --color-bg: #0a0a0a;
+            --color-surface: #1a1a1a;
+            --color-surface-alt: #0d0d0d;
+            --color-text: #ffffff;
+            --color-text-secondary: #cccccc;
+            --color-text-tertiary: #999999;
+            --color-border: rgba(255, 127, 0, 0.3);
+            --color-border-hover: rgba(255, 127, 0, 0.8);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.8s ease-in-out;
+            --shadow-sm: 0 10px 40px rgba(0, 0, 0, 0.6);
+            --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.7);
+            --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 20px rgba(255, 127, 0, 0.1);
+            --shadow-glow-intense: 0 0 40px rgba(255, 127, 0, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #000000;
-            color: #ffffff;
+            background: var(--color-bg);
+            color: var(--color-text);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
@@ -34,105 +71,144 @@
                 radial-gradient(circle at 20% 30%, rgba(255, 127, 0, 0.15) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 127, 0, 0.12) 0%, transparent 40%),
                 radial-gradient(circle at 50% 50%, rgba(255, 100, 0, 0.05) 0%, transparent 60%);
-            animation: bgPulse 8s ease-in-out infinite;
+            animation: bgPulse var(--transition-slow) ease-in-out infinite;
             pointer-events: none;
+            z-index: 0;
         }
 
         body::after {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             background-image:
-                linear-gradient(rgba(255, 127, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 127, 0, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 127, 0, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 127, 0, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.5;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
-            padding: 2rem;
+            padding: clamp(var(--spacing-sm), 5vw, var(--spacing-lg));
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .logo-section {
-            margin-bottom: 3rem;
-            animation: fadeInDown 1s ease-out;
+            margin-bottom: clamp(var(--spacing-lg), 8vw, var(--spacing-xl));
+            animation: fadeInDown 1s var(--transition-base) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
+        }
+
+        .logo-image {
+            width: clamp(100px, 20vw, 180px);
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(255, 127, 0, 0.2));
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
         }
 
         .logo {
-            font-size: 4.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ff7f00 0%, #ffaa00 50%, #ff7f00 100%);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% auto;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-            animation: gradientShift 3s ease-in-out infinite;
+            letter-spacing: -1px;
+            animation: gradientShift var(--transition-slow) ease-in-out infinite;
             filter: drop-shadow(0 0 30px rgba(255, 127, 0, 0.4));
+            line-height: 1.1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .tagline {
-            font-size: 1.5rem;
-            color: #cccccc;
-            font-weight: 300;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--color-text-secondary);
+            font-weight: 400;
             letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
+            animation: fadeIn 1s var(--transition-base) 0.2s both;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            color: #999999;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: var(--color-text-tertiary);
             font-weight: 300;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeIn 1s var(--transition-base) 0.3s both;
         }
 
         .coming-soon {
-            font-size: 2rem;
-            color: #ff7f00;
-            font-weight: 600;
-            margin: 3rem 0 2rem;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            color: var(--color-primary);
+            font-weight: 700;
+            margin: clamp(var(--spacing-lg), 6vw, var(--spacing-xl)) 0 var(--spacing-lg);
             letter-spacing: 2px;
             text-transform: uppercase;
-            animation: fadeIn 1s ease-out 0.3s both;
+            animation: fadeIn var(--transition-base) 0.4s both;
+            text-shadow: 0 0 15px rgba(255, 127, 0, 0.3);
         }
 
         .countdown-container {
-            margin: 3rem auto;
-            animation: fadeIn 1s ease-out 0.6s both;
+            margin: clamp(var(--spacing-lg), 6vw, var(--spacing-xl)) auto;
+            animation: fadeIn var(--transition-base) 0.5s both;
         }
 
         .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: clamp(var(--spacing-sm), 3vw, var(--spacing-lg));
+            margin-bottom: clamp(var(--spacing-lg), 4vw, var(--spacing-xl));
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .countdown-item {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            border: 2px solid rgba(255, 127, 0, 0.4);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            min-width: 150px;
+            background: linear-gradient(145deg, var(--color-surface), var(--color-surface-alt));
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
             box-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.6),
-                0 0 20px rgba(255, 127, 0, 0.1),
+                var(--shadow-sm),
+                var(--shadow-glow),
                 inset 0 1px 0 rgba(255, 127, 0, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all var(--transition-base);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
         }
 
         .countdown-item::before {
@@ -144,7 +220,7 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255, 127, 0, 0.15) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity var(--transition-base);
         }
 
         .countdown-item::after {
@@ -154,9 +230,9 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #ff7f00, transparent);
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity var(--transition-base);
         }
 
         .countdown-item:hover::before {
@@ -168,53 +244,60 @@
         }
 
         .countdown-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 127, 0, 0.8);
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--color-border-hover);
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.7),
-                0 0 40px rgba(255, 127, 0, 0.3),
+                var(--shadow-md),
+                var(--shadow-glow-intense),
                 inset 0 1px 0 rgba(255, 127, 0, 0.3);
         }
 
+        .countdown-item:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
         .countdown-value {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #ff7f00;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            color: var(--color-primary);
             line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
             text-shadow: 0 0 20px rgba(255, 127, 0, 0.5);
-            transition: all 0.3s ease;
+            transition: all var(--transition-fast);
+            letter-spacing: -1px;
         }
 
         .countdown-item:hover .countdown-value {
             transform: scale(1.1);
+            text-shadow: 0 0 30px rgba(255, 127, 0, 0.8);
         }
 
         .countdown-label {
-            font-size: 0.9rem;
-            color: #999999;
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            color: var(--color-text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
         .progress-bar-container {
             max-width: 600px;
             margin: 0 auto;
-            background: #1a1a1a;
+            background: var(--color-surface);
             border-radius: 50px;
-            height: 12px;
+            height: 10px;
             overflow: hidden;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 127, 0, 0.2);
+            border: 1px solid var(--color-border);
+            animation: fadeIn var(--transition-base) 0.6s both;
         }
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #ff7f00 0%, #ffaa00 100%);
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
             border-radius: 50px;
             transition: width 1s ease;
-            box-shadow: 0 0 20px rgba(255, 127, 0, 0.6);
+            box-shadow: var(--shadow-glow-intense);
             position: relative;
             overflow: hidden;
         }
@@ -226,55 +309,150 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2.5s ease-in-out infinite;
         }
 
         .description {
-            max-width: 700px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: rgba(255, 127, 0, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 127, 0, 0.2);
-            animation: fadeIn 1s ease-out 0.9s both;
+            max-width: 750px;
+            margin: clamp(var(--spacing-lg), 6vw, var(--spacing-xl)) auto;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, rgba(255, 127, 0, 0.08) 0%, rgba(255, 127, 0, 0.02) 100%);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            animation: fadeIn var(--transition-base) 0.7s both;
+            box-shadow: inset 0 1px 0 rgba(255, 127, 0, 0.1);
         }
 
         .description h2 {
-            color: #ff7f00;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            color: var(--color-primary);
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .description p {
-            color: #cccccc;
-            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .description p:last-of-type {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
+            margin: var(--spacing-xl) 0;
+        }
+
+        .feature-item {
+            padding: var(--spacing-md);
+            background: rgba(255, 127, 0, 0.05);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-base);
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 127, 0, 0.1);
+            transform: translateX(8px);
+        }
+
+        .feature-item h3 {
+            color: var(--color-primary);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-bottom: var(--spacing-xs);
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: var(--color-text-tertiary);
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            margin-bottom: 0;
         }
 
         .launch-date {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            color: #ff7f00;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 127, 0, 0.15);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--color-primary);
             font-weight: 600;
         }
 
         .completed-message {
-            font-size: 2.5rem;
-            color: #ff7f00;
-            font-weight: 600;
-            margin: 2rem 0;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: var(--color-primary);
+            font-weight: 700;
+            margin: clamp(var(--spacing-lg), 4vw, var(--spacing-xl)) 0;
             display: none;
             line-height: 1.6;
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn var(--transition-base) 0.6s both;
         }
 
         .dev-notice {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-top: 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--color-text-secondary);
+            margin-top: var(--spacing-md);
+            font-weight: 400;
+        }
+
+        .delay-banner {
+            max-width: 750px;
+            margin: clamp(var(--spacing-lg), 6vw, var(--spacing-xl)) auto clamp(var(--spacing-lg), 6vw, var(--spacing-xl));
+            background: linear-gradient(135deg, rgba(255, 127, 0, 0.15) 0%, rgba(255, 127, 0, 0.08) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            animation: fadeIn var(--transition-base) 0.3s both;
+            box-shadow: inset 0 1px 0 rgba(255, 127, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .delay-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        }
+
+        .delay-banner-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .delay-banner-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .delay-banner-text {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .delay-banner-date {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            color: var(--color-primary);
+            padding: var(--spacing-md);
+            background: rgba(255, 127, 0, 0.1);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid rgba(255, 127, 0, 0.2);
         }
 
         @keyframes fadeIn {
@@ -337,73 +515,169 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .coming-soon {
-                font-size: 1.5rem;
-            }
-
+        @media (max-width: 1024px) {
             .countdown {
-                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
 
             .countdown-item {
-                min-width: 100px;
-                padding: 1.5rem 1rem;
+                min-height: 130px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --spacing-lg: 1.5rem;
+                --spacing-xl: 2.5rem;
             }
 
-            .countdown-value {
-                font-size: 2.5rem;
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
             }
 
-            .countdown-label {
-                font-size: 0.75rem;
+            .countdown-item {
+                min-height: 120px;
+            }
+
+            .progress-bar-container {
+                height: 8px;
             }
 
             .description {
-                padding: 1.5rem;
+                border-radius: var(--radius-sm);
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --spacing-md: 1rem;
+                --spacing-lg: 1.25rem;
             }
 
-            .description h2 {
-                font-size: 1.4rem;
+            .container {
+                padding: clamp(1rem, 4vw, 1.5rem);
             }
 
-            .description p {
-                font-size: 1rem;
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-sm);
+                max-width: 100%;
             }
 
-            .completed-message {
-                font-size: 2rem;
+            .countdown-item {
+                min-height: 110px;
+                border-radius: var(--radius-md);
+            }
+
+            .countdown-item:hover {
+                transform: translateY(-6px) scale(1.03);
+            }
+
+            .countdown-item:active {
+                transform: translateY(-3px) scale(1.01);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                border-left: 3px solid var(--color-primary);
             }
         }
 
         @media (max-width: 480px) {
+            :root {
+                --spacing-sm: 0.75rem;
+                --spacing-md: 0.875rem;
+            }
+
             .container {
-                padding: 1rem;
+                padding: 0.875rem;
+            }
+
+            .logo-section {
+                margin-bottom: clamp(1.5rem, 5vw, 2rem);
+            }
+
+            .countdown {
+                gap: 0.625rem;
             }
 
             .countdown-item {
-                min-width: 70px;
-                padding: 1rem 0.75rem;
+                min-height: 100px;
+                padding: 1.25rem 0.75rem;
+                border-width: 1.5px;
             }
 
             .countdown-value {
-                font-size: 2rem;
+                margin-bottom: 0.25rem;
             }
 
-            .countdown-label {
-                font-size: 0.7rem;
+            .countdown-item:hover {
+                transform: translateY(-4px) scale(1.02);
+            }
+
+            .progress-bar-container {
+                height: 6px;
+            }
+
+            .description {
+                padding: 1.25rem;
+                margin: 1.5rem auto;
+            }
+
+            .description h2 {
+                margin-bottom: 0.875rem;
+            }
+
+            .description p {
+                margin-bottom: 0.875rem;
+            }
+
+            .launch-date {
+                margin-top: 0.875rem;
+                padding-top: 0.875rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .countdown-item {
+                min-height: 90px;
+                padding: 1rem 0.5rem;
+                border-width: 1px;
+            }
+
+            .countdown-value {
+                text-shadow: 0 0 15px rgba(255, 127, 0, 0.4);
+            }
+
+            .countdown-item:hover .countdown-value {
+                text-shadow: 0 0 20px rgba(255, 127, 0, 0.6);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body::before {
+                animation: none;
+            }
+
+            .logo {
+                animation: none;
             }
         }
     </style>
@@ -411,8 +685,11 @@
 <body>
     <div class="container">
         <div class="logo-section">
-            <div class="logo">XMRMatters</div>
-            <div class="tagline">Privacy-First P2P Exchange</div>
+            <img src="/HLogo.png" alt="XMRMatters Logo" class="logo-image">
+            <div class="logo-text-wrapper">
+                <div class="logo">XMRMatters</div>
+                <div class="tagline">Privacy-First P2P Exchange</div>
+            </div>
             <div class="subtitle">Inspired by LocalMonero's idealism, built for the future of peer-to-peer trading</div>
         </div>
 
@@ -443,6 +720,18 @@
             </div>
         </div>
 
+        <div class="delay-banner">
+            <div class="delay-banner-content">
+                <div class="delay-banner-title">Extended Testing Phase</div>
+                <div class="delay-banner-text">
+                    We're committed to delivering a secure and reliable trading platform. To ensure the safety and integrity of the XMRMatters P2P trading platform, we've extended our testing phase. Thank you for your patience and understanding.
+                </div>
+                <div class="delay-banner-date">
+                    New Launch Date: December 15th, 2025
+                </div>
+            </div>
+        </div>
+
         <div class="completed-message" id="completedMessage">
             <div>Welcome to XMRMatters</div>
             <div class="dev-notice">Inspired by LocalMonero.co, still in development</div>
@@ -451,21 +740,39 @@
         <div class="description">
             <h2>Our Mission</h2>
             <p>
-                XMRMatters is a new peer-to-peer exchange platform dedicated to privacy, freedom, and user empowerment.
-                We believe in the fundamental right to financial privacy and the power of decentralized, person-to-person transactions.
+                XMRMatters is a revolutionary peer-to-peer exchange platform dedicated to privacy, freedom, and user empowerment.
+                We believe in the fundamental right to financial privacy and the transformative power of decentralized, person-to-person transactions.
+                In a world where privacy is increasingly under threat, we're building a sanctuary for those who value their financial autonomy.
             </p>
             <p>
                 Built on the principles that made LocalMonero a trusted community hub, we're creating a platform where
-                users can trade directly with each other, maintaining control over their privacy and their assets.
+                users can trade directly with each other, maintaining complete control over their privacy and their assets.
+                No intermediaries. No surveillance. No compromise.
             </p>
+
+            <div class="features">
+                <div class="feature-item">
+                    <h3>Privacy First</h3>
+                    <p>End-to-end encryption and peer-to-peer transactions without tracking or surveillance.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Community Driven</h3>
+                    <p>Built by and for the community that values freedom and financial sovereignty.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Zero Barriers</h3>
+                    <p>Direct peer-to-peer trading with minimal fees and maximum flexibility.</p>
+                </div>
+            </div>
+
             <div class="launch-date">
-                Launch Date: December 1st, 2025 at 12:00 AM UTC
+                Launch Date: December 15th, 2025 at 12:00 AM UTC
             </div>
         </div>
     </div>
 
     <script>
-        const d=new Date('2025-12-01T00:00:00Z'),s=new Date('2024-10-01T00:00:00Z');
+        const d=new Date('2025-12-15T00:00:00Z'),s=new Date('2024-10-01T00:00:00Z');
         function u(){
             const n=Date.now(),t=d-n;
             if(t<0){
