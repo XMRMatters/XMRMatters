@@ -1,0 +1,12 @@
+# XMRMatters Robots Configuration
+# All crawlers are welcome on our site
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /private
+
+# Specific optimizations
+Crawl-delay: 1
+Request-rate: 30/60
