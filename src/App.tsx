@@ -49,12 +49,12 @@ function AppContent() {
     // Only show spinner for navigation between pages, not on initial load
     if (!isInitialLoad) {
       setIsLoading(true);
-      
+
       const path = routeMap[page];
-      
+
       // Faster transition: 200-400ms (still smooth but quicker)
       const loadingTime = Math.random() * 200 + 200; // 200-400ms
-      
+
       setTimeout(() => {
         navigate(path);
         setIsLoading(false);
@@ -67,14 +67,14 @@ function AppContent() {
   };
 
   const handleLogoClick = () => {
-    window.location.href = '/home';
+    window.location.href = '/';
   };
 
   return (
     <div className="min-h-screen bg-gray-900">
       {isLoading && <LoadingSpinner />}
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} onLogoClick={handleLogoClick} />
-      
+
       <Routes>
         <Route path="/home" element={<HomePage onNavigate={handleNavigate} />} />
         <Route path="/" element={<HomePage onNavigate={handleNavigate} />} />
