@@ -8,7 +8,7 @@ interface HomePageProps {
 export function HomePage({ onNavigate }: HomePageProps) {
   const now = new Date();
   const currentYear = now.getFullYear();
-  const targetDate = new Date(currentYear, 0, 5);
+  const targetDate = new Date(currentYear, 0, 25);
 
   if (targetDate < now) {
     targetDate.setFullYear(currentYear + 1);
@@ -37,11 +37,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
-              Coming January 5th, {targetDate.getFullYear()}
+              Coming January 25th, {targetDate.getFullYear()}
             </p>
 
             <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              We've made the difficult decision to delay our launch from December 15th to ensure our platform meets the highest standards of security and privacy.
+              We've made the difficult decision to delay our launch to January 25th to ensure our platform meets the highest standards of security and privacy. This delay allows us to thoroughly test every aspect of the platform and address any privacy concerns.
             </p>
           </div>
 

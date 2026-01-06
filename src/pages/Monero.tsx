@@ -261,7 +261,7 @@ export function Monero() {
                     <ExternalLink className="w-4 h-4" />
                   </a>
                   <button
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="inline-flex items-center justify-center gap-2 border border-gray-700 text-gray-300 hover:bg-gray-800/50 px-6 py-3 rounded-lg font-medium transition-all duration-300"
                   >
                     See Trading Offers
@@ -300,11 +300,10 @@ export function Monero() {
               {/* Bitcoin View */}
               <div
                 onClick={() => setPrivacyView('bitcoin')}
-                className={`p-4 md:p-8 border-2 transition-all duration-300 cursor-pointer rounded-lg md:rounded-2xl ${
-                  privacyView === 'bitcoin'
+                className={`p-4 md:p-8 border-2 transition-all duration-300 cursor-pointer rounded-lg md:rounded-2xl ${privacyView === 'bitcoin'
                     ? 'border-blue-500/50 bg-blue-500/10'
                     : 'border-gray-800/50 bg-gray-900/40'
-                }`}
+                  }`}
               >
                 <h3 className="font-semibold text-white text-sm md:text-lg mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                   <Eye className="w-4 md:w-5 h-4 md:h-5 text-blue-400 flex-shrink-0" /> Bitcoin Transaction
@@ -331,11 +330,10 @@ export function Monero() {
               {/* Monero View */}
               <div
                 onClick={() => setPrivacyView('monero')}
-                className={`p-4 md:p-8 border-2 transition-all duration-300 cursor-pointer rounded-lg md:rounded-2xl ${
-                  privacyView === 'monero'
+                className={`p-4 md:p-8 border-2 transition-all duration-300 cursor-pointer rounded-lg md:rounded-2xl ${privacyView === 'monero'
                     ? 'border-orange-500/50 bg-orange-500/10'
                     : 'border-gray-800/50 bg-gray-900/40'
-                }`}
+                  }`}
               >
                 <h3 className="font-semibold text-white text-sm md:text-lg mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                   <Eye className="w-4 md:w-5 h-4 md:h-5 text-orange-400 flex-shrink-0" /> Monero Transaction
@@ -384,9 +382,8 @@ export function Monero() {
                         )}
                       </div>
                       <ChevronDown
-                        className={`w-5 h-5 text-gray-400 group-hover:text-orange-400 flex-shrink-0 transition-transform duration-300 ${
-                          expandedMythIndex === idx ? 'rotate-180' : ''
-                        }`}
+                        className={`w-5 h-5 text-gray-400 group-hover:text-orange-400 flex-shrink-0 transition-transform duration-300 ${expandedMythIndex === idx ? 'rotate-180' : ''
+                          }`}
                       />
                     </div>
                   </div>
@@ -554,9 +551,8 @@ export function Monero() {
                         )}
                       </div>
                       <ChevronDown
-                        className={`w-5 h-5 text-gray-400 group-hover:text-blue-400 flex-shrink-0 transition-transform duration-300 ${
-                          deepDiveIndex === idx ? 'rotate-180' : ''
-                        }`}
+                        className={`w-5 h-5 text-gray-400 group-hover:text-blue-400 flex-shrink-0 transition-transform duration-300 ${deepDiveIndex === idx ? 'rotate-180' : ''
+                          }`}
                       />
                     </div>
                   </div>
@@ -715,8 +711,8 @@ export function Monero() {
               {[
                 { step: '1', title: 'Create Account', desc: 'Sign up with just a username. No email, no verification.' },
                 { step: '2', title: 'Get a Wallet', desc: 'Download an official Monero wallet (mobile, desktop, or web).' },
-                { step: '3', title: 'Fund Your Wallet', desc: 'Buy XMR from a peer or exchange, then transfer to your wallet.' },
-                { step: '4', title: 'Trade on XMRMatters', desc: 'Start buying/selling with complete privacy and security.' }
+                { step: '3', title: 'Trade on XMRMatters', desc: 'Start buying/selling XMR peer-to-peer with complete privacy and security.' },
+                { step: '4', title: 'Withdraw to Private Wallet', desc: 'Withdraw your XMR to your personal wallet for full control and privacy.' }
               ].map((item) => (
                 <div key={item.step} className="p-6 bg-gradient-to-br from-green-500/20 to-green-600/10 rounded-lg border border-green-500/30 text-center">
                   <div className="text-4xl font-bold text-green-400 mb-4">{item.step}</div>
@@ -758,9 +754,8 @@ export function Monero() {
                   <div className="flex items-center justify-between gap-4">
                     <h3 className="font-semibold text-white text-base group-hover:text-orange-300 transition-colors leading-snug">{item.q}</h3>
                     <ChevronDown
-                      className={`w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-all flex-shrink-0 ${
-                        expandedFAQ === idx ? 'rotate-180' : ''
-                      }`}
+                      className={`w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-all flex-shrink-0 ${expandedFAQ === idx ? 'rotate-180' : ''
+                        }`}
                     />
                   </div>
                   {expandedFAQ === idx && (
@@ -854,4 +849,3 @@ export function Monero() {
     </div>
   );
 }
- 
