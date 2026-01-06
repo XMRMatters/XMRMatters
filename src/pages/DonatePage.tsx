@@ -18,7 +18,7 @@ export function DonatePage() {
     {
       name: 'Monero',
       symbol: 'XMR',
-      address: '41dLZc3eST1USFwiZgmn8aERCsAakAnMzXj7NWD6QTkjWRBu1JDa4HeD3J1c5G2cfmTFRVMWVjVGTGD15zvHnBLgRfvQhAQ',
+      address: '82qH51mZHisD1ojMhxYtMtAA8viZqAXKAaqv9cVG5yDY9SuigtyXUpE5ygpDck41Q7KFoBPzczyLM4aeXHKjSiE861WYdHz',
       color: 'orange',
       gradient: 'from-orange-500 to-orange-600',
       icon: '🔐',
@@ -31,7 +31,7 @@ export function DonatePage() {
       await navigator.clipboard.writeText(address);
       setCopiedAddress(address);
       setTimeout(() => setCopiedAddress(null), 2000);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       // Clipboard access failed - user can manually copy
     }
@@ -147,7 +147,7 @@ export function DonatePage() {
 
           <div className="max-w-5xl mx-auto mb-12 sm:mb-16 md:mb-20 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 md:mb-10">Built for Privacy</h2>
-
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 md:gap-4 px-0 sm:px-2">
               {privacyFeatures.map((feature) => (
                 <div
@@ -163,7 +163,7 @@ export function DonatePage() {
 
           <div className="max-w-5xl mx-auto mb-12 sm:mb-16 md:mb-20 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 md:mb-12">Why Support Us</h2>
-
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {whyDonate.map((item, index) => {
                 const Icon = item.icon;
@@ -211,10 +211,11 @@ export function DonatePage() {
 
                   <button
                     onClick={() => handleCopy(crypto.address)}
-                    className={`w-full flex items-center justify-center gap-2 py-2 md:py-3 px-4 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 ${copiedAddress === crypto.address
+                    className={`w-full flex items-center justify-center gap-2 py-2 md:py-3 px-4 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                      copiedAddress === crypto.address
                         ? 'bg-green-600 text-white focus:ring-green-500'
                         : 'bg-orange-500 hover:bg-orange-600 text-white focus:ring-orange-400'
-                      }`}
+                    }`}
                     aria-label={`Copy ${crypto.name} address`}
                   >
                     {copiedAddress === crypto.address ? (

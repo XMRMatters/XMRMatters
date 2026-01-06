@@ -8,7 +8,7 @@ interface HomePageProps {
 export function HomePage({ onNavigate }: HomePageProps) {
   const now = new Date();
   const currentYear = now.getFullYear();
-  const targetDate = new Date(currentYear, 0, 25);
+  const targetDate = new Date(currentYear, 0, 5);
 
   if (targetDate < now) {
     targetDate.setFullYear(currentYear + 1);
@@ -37,11 +37,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
-              Coming January 25th, {targetDate.getFullYear()}
+              Coming January 5th, {targetDate.getFullYear()}
             </p>
 
             <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              We've extended our launch date to allow for extensive testing and local node synchronization, ensuring our platform meets the highest standards of security and reliability.
+              We've made the difficult decision to delay our launch from December 15th to ensure our platform meets the highest standards of security and privacy.
             </p>
           </div>
 
@@ -52,12 +52,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="max-w-5xl mx-auto mb-16 md:mb-20 animate-fade-in-up px-0 sm:px-2" style={{ animationDelay: '400ms' }}>
             <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-lg rounded-2xl md:rounded-3xl p-6 md:p-12 border border-orange-500/20 shadow-2xl">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">
-                Privacy Guaranteed. Security First.
+                Security Over Speed
               </h2>
               {/* Info Content - */}
               <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
                 <p>
-                  At XMRMatters, we guarantee that <span className="text-orange-400 font-semibold">your privacy is our top priority</span>. We're taking the time needed to ensure every aspect of our peer-to-peer exchange platform is built with privacy-first architecture, thoroughly tested, and independently audited.
+                  At XMRMatters, we believe that <span className="text-orange-400 font-semibold">your privacy and security are non-negotiable</span>. While we're excited to launch our peer-to-peer exchange platform, we've chosen to take additional time to ensure every aspect of our system is thoroughly tested and audited.
                 </p>
 
                 <p>
@@ -67,20 +67,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 <ul className="space-y-3 ml-4 md:ml-6">
                   <li className="flex items-start space-x-3">
                     <Shield className="w-5 md:w-6 h-5 md:h-6 text-orange-500 flex-shrink-0 mt-0.5 md:mt-1" />
-                    <span className="text-sm md:text-base">Guarantee zero-knowledge architecture—we can never see your transactions</span>
+                    <span className="text-sm md:text-base">Conduct comprehensive security audits of our entire infrastructure</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <Lock className="w-5 md:w-6 h-5 md:h-6 text-orange-500 flex-shrink-0 mt-0.5 md:mt-1" />
-                    <span className="text-sm md:text-base">Implement end-to-end encryption for all communications and data</span>
+                    <span className="text-sm md:text-base">Implement additional encryption layers for maximum privacy protection</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <Shield className="w-5 md:w-6 h-5 md:h-6 text-orange-500 flex-shrink-0 mt-0.5 md:mt-1" />
-                    <span className="text-sm md:text-base">Conduct independent security audits to verify privacy guarantees</span>
+                    <span className="text-sm md:text-base">Perform extensive penetration testing to identify any vulnerabilities</span>
                   </li>
                 </ul>
 
                 <p className="pt-4 text-lg md:text-xl font-semibold text-orange-400">
-                  Your privacy is guaranteed. Period. We take the time to get it right.
+                  We'd rather launch late and secure than on-time and vulnerable.
                 </p>
               </div>
             </div>
